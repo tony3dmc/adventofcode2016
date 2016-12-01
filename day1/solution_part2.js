@@ -12,7 +12,7 @@ var Santa = {
   x: 0,
   y: 0,
   direction: NORTH,
-  locations: {},
+  locations: [],
 
   turn: function(direction) {
     this.direction = (this.direction + direction) % 4;
@@ -33,9 +33,8 @@ var Santa = {
         this.x -= distance;
         break;
     }
-    position = this.x + "," + this.y;
-    console.log("Santa is at " + position);
-    if (position in this.locations) {
+    position = [this.x, this.y];
+    if (this.locations[position]) {
       this.beenHereBefore();
     }
     this.locations[position] = 1;
@@ -50,6 +49,7 @@ var Santa = {
   beenHereBefore: function() {
     console.log("Woah Rudolph! We've been here before!");
     console.log(this.status());
+    process.exit();
   }
 }
 

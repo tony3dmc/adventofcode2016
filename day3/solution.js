@@ -1,6 +1,7 @@
 var common = require('../common.js');
 
-function validTriangle(sides) {
+function validTriangle(definition) {
+  sides = definition.split(/\s+/).toInts();
   if (sides[0] + sides[1] > sides[2]) {
     if (sides[1] + sides[2] > sides[0]) {
       if (sides[2] + sides[0] > sides[1]) {
@@ -12,15 +13,7 @@ function validTriangle(sides) {
 }
 
 
-var fs = require('fs');
 var instructions = common.getFullFile('input.txt');
+var valid = instructions.split(/\n\s+/).filter(validTriangle);
 
-var counter = 0;
-instructions.split(/\n\s+/).forEach(function(line) {
-  var sides = line.trim().split(/\s+/).toInts();
-  if (validTriangle(sides.sort())) {
-    counter++;
-  }
-});
-
-console.log("There were " + counter + " valid triangles supplied");
+console.log("There were " + valid.length + " valid triangles");

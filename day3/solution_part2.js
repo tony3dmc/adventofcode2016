@@ -20,11 +20,6 @@ for (var i = 0; i < ints.length; i += 9) {
   triangles.push([ints[i + 2], ints[i + 5], ints[i + 8]]);
 }
 
-var counter = 0;
-triangles.forEach(function(sides) {
-  if (validTriangle(sides)) {
-    counter++;
-  }
-});
+var valid = triangles.filter(validTriangle);
 
-console.log("There were " + counter + " valid triangles supplied");
+console.log("There were " + valid.length + " valid triangles");

@@ -8,7 +8,7 @@ String.prototype.sortByFrequency = function() {
     map[i] ? map[i]++ : map[i] = 1;
   }
   // First sort the keys by the numeric frequencies, then by alphabetising matching keys
-  return Object.keys(map).sort(function(a, b) {return map[b]-map[a]||(a>b?1:a<b?-1:0)});
+  return Object.keys(map).sort(function(a, b) {return map[b]-map[a]});
 }
 
 var signal = common.readWords('input.txt').join('');
